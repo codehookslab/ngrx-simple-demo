@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="text-center">Pipes Demo</h1>
+  <hr>
+  <div class="d-flex justify-content-center">
+    <button class="btn btn-primary" (click)="handleMakeAllStudentPass()">Toggle Student Pass</button>
+  </div>
+  <hr>
+  <div class="d-flex justify-content-center">
+    <input #name type="text" class="mr-4">
+    <button class="btn btn-success ml-4" (click)="handleAddStudent(name.value)">Add Student</button>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-6 border border-primary">
+      <h3 class="text-center">Pure Pipe</h3>
+      <hr>
+      <ul class="list-group">
+        <li *ngFor="let student of students | isPassedPure"
+          [ngClass]="student.isPassed ? 'list-group-item list-group-item-success' : 'list-group-item list-group-item-danger'">
+          <input type="checkbox" (change)="changeSelection(student)">
+          {{student.name}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-6 border border-secondary">
+      <h3 class="text-center">Impure Pipe</h3>
+      <hr>
+      <ul class="list-group">
+        <li *ngFor="let student of students | isPassedImpure"
+          [ngClass]="student.isPassed ? 'list-group-item list-group-item-success' : 'list-group-item list-group-item-danger'">
+          <input type="checkbox" (change)="changeSelection(student)">
+          {{student.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
